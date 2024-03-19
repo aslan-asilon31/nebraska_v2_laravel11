@@ -1,4 +1,3 @@
-https://nebraskav2.sulaslansetiawan.cfd/
+nebraskav2.sulaslansetiawan.cfd
 
-![Nebraska v2 - canva -purple](https://github.com/aslan-asilon31/nebraska_v2_laravel11/assets/116990574/4f977166-4cb4-4a18-bbca-bb72eaace1fa)
-
+![Nebraska v2 - canva -purple](https://github.com/aslan-asilon31/nebraska_v2_laravel11/assets/116990574/410548e7-6326-49a0-bb57-c47cc2ee69ad)
