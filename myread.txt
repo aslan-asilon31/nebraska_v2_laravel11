@@ -1,0 +1,9 @@
+https://dev.to/martinms/integrate-midtrans-in-laravel-with-snap-api-part-1-18g8
+
+
+========================= shopping cart
+
+https://laracart.lukepolo.com/master/getting-started?ref=madewithlaravel.
+
+
+https://madewithlaravel.com/laracart
