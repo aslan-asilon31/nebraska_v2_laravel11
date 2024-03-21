@@ -536,8 +536,14 @@
                          class="rounded-circle" alt="image">
                 </div>
                 <div>
-                    <div class="fw-bold text-purple">Sulaslan Setiawan</div>
-                    <small class="text-muted">Admin</small>
+                    <div class="fw-bold text-purple">{{ $username }}</div>
+                    @if ( $userrole == 1)
+                        <small class="text-muted">Super Admin</small>
+                    @elseif( $userrole == 7)
+                        <small class="text-muted">Buyer</small>
+                    @else
+                        <small class="text-muted">-</small>
+                    @endif
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-end">
@@ -556,241 +562,286 @@
                 </a>
             </div>
         </div>
-        <ul>
-            <li class="menu-divider">Dashboard</li>
-            <li >
-                <a  class="{{ $isActive == 'dashboard'  ? 'active' : ''}}"  href="{{route('dashboard.index')}}">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-bar-chart"></i>
-                    </span>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li >
-                <a href="#">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-receipt"></i>
-                    </span>
-                    <span>Orders</span>
-                </a>
-                <ul>
-                    <li >
-                        <a class="{{ $isActive == 'order-list'  ? 'active' : ''}}"  href="{{route('order.index')}}">List</a>
-                    </li>
-                    <li>
-                        <a class="{{ $isActive == 'order-detail'  ? 'active' : ''}}" href="{{route('order.detail')}}">Detail</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-truck"></i>
-                    </span>
-                    <span>Products</span>
-                </a>
-                <ul>
-                    <li>
-                        <a class="{{ $isActive }}"  href="./product-list.html">List View</a>
-                    </li>
-                    <li>
-                        <a class="{{ $isActive }}"  href="./product-grid.html">Grid View</a>
-                    </li>
-                    <li>
-                        <a class="{{ $isActive }}"  href="./product-detail.html">Product Detail</a>
-                    </li>
-                    <li>
-                        <a class="{{ $isActive }}"  href="./shopping-cart.html">Shopping Cart</a>
-                    </li>
-                    <li>
-                        <a class="{{ $isActive }}"  href="./checkout.html">Checkout</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-wallet2"></i>
-                    </span>
-                    <span>Buyer</span>
-                </a>
-                <ul>
-                    <li>
-                        <a  href="./buyer-dashboard.html">Dashboard</a>
-                    </li>
-                    <li>
-                        <a  href="./buyer-orders.html">Orders</a>
-                    </li>
-                    <li>
-                        <a  href="./buyer-addresses.html">Addresses</a>
-                    </li>
-                    <li>
-                        <a  href="./buyer-wishlist.html">Wishlist</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a  href="./customers.html">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-person-badge"></i>
-                    </span>
-                    <span>Customers</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-receipt"></i>
-                    </span>
-                    <span>Invoices</span>
-                </a>
-                <ul>
-                    <li>
-                        <a href="./invoices.html" >List</a>
-                    </li>
-                    <li>
-                        <a href="./invoice-detail.html" >Detail</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-receipt"></i>
-                    </span>
-                    <span>Master Data</span>
-                </a>
-                <ul>
-                    <li>
-                        <a class="{{ $isActive == 'category'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Category Master</a>
-                    </li>
-                    <li>
-                        <a href="./invoice-detail.html" >Detail</a>
-                    </li>
-                </ul>
-            </li>
-            
-            <li class="menu-divider">Pages</li>
-            <li>
-                <a href="#">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-person"></i>
-                    </span>
-                    <span>Profile</span>
-                </a>
-                <ul>
-                    <li>
-                        <a  href="./profile-posts.html">Post</a>
-                    </li>
-                    <li>
-                        <a  href="./profile-connections.html">Connections</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-person-circle"></i>
-                    </span>
-                    <span>Users</span>
-                </a>
-                <ul>
-                    <li>
-                        <a  href="./user-list.html">List View</a>
-                    </li>
-                    <li>
-                        <a  href="./user-grid.html">Grid View</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-lock"></i>
-                    </span>
-                    <span>Authentication</span>
-                </a>
-                <ul>
-                    <li>
-                        <a href="./login.html" target="_blank">Login</a>
-                    </li>
-                    <li>
-                        <a href="./register.html" target="_blank">Register</a>
-                    </li>
-                    <li>
-                        <a href="./reset-password.html" target="_blank">Reset Password</a>
-                    </li>
-                    <li>
-                        <a href="./lock-screen.html" target="_blank">Lock Screen</a>
-                    </li>
-                    <li>
-                        <a href="./account-verified.html" target="_blank">Account Verified</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-exclamation-octagon"></i>
-                    </span>
-                    <span>Error Pages</span>
-                </a>
-                <ul>
-                    <li>
-                        <a href="./404.html" target="_blank">404</a>
-                    </li>
-                    <li>
-                        <a  href="./access-denied.html">Access Denied</a>
-                    </li>
-                    <li>
-                        <a href="./under-construction.html" target="_blank">Under Construction</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a  href="./settings.html">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-gear"></i>
-                    </span>
-                    <span>Settings</span>
-                </a>
-            </li>
-            <li>
-                <a  href="./pricing-table.html">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-wallet2"></i>
-                    </span>
-                    <span>Pricing Table</span>
-                    <span class="badge bg-success ms-auto">New</span>
-                </a>
-            </li>
-            <li>
-                <a  href="./search-page.html">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-search"></i>
-                    </span>
-                    <span>Search Page</span>
-                </a>
-            </li>
-            <li>
-                <a  href="./faq.html">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-question-circle"></i>
-                    </span>
-                    <span>FAQ</span>
-                </a>
-            </li>
-            <li class="menu-divider">Other</li>
-            <li>
-                <a target="_blank" href="">
-                    <span class="nav-link-icon">
-                        <i class="bi bi-file-earmark-medical"></i>
-                    </span>
-                    <span>Documentation</span>
-                </a>
-               
-            </li>
-        </ul>
+        @if ($userrole == 1)
+            <ul>
+                <li class="menu-divider">Dashboard</li>
+                <li >
+                    <a  class="{{ $isActive == 'dashboard'  ? 'active' : ''}}"  href="{{route('dashboard.index')}}">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-bar-chart"></i>
+                        </span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="#">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-receipt"></i>
+                        </span>
+                        <span>Orders</span>
+                    </a>
+                    <ul>
+                        <li >
+                            <a class="{{ $isActive == 'order-list'  ? 'active' : ''}}"  href="{{route('order.index')}}">List</a>
+                        </li>
+                        <li>
+                            <a class="{{ $isActive == 'order-detail'  ? 'active' : ''}}" href="{{route('order.detail')}}">Detail</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-truck"></i>
+                        </span>
+                        <span>Products</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="{{ $isActive }}"  href="{{route('user.index')}}">List View</a>
+                        </li>
+                        <li>
+                            <a class="{{ $isActive }}"  href="{{route('errorpage.underconstruction')}}">Grid View</a>
+                        </li>
+                        <li>
+                            <a class="{{ $isActive }}"  href="{{route('errorpage.underconstruction')}}">Product Detail</a>
+                        </li>
+                        <li>
+                            <a class="{{ $isActive }}"  href="{{route('errorpage.underconstruction')}}">Shopping Cart</a>
+                        </li>
+                        <li>
+                            <a class="{{ $isActive }}"  href="{{route('errorpage.underconstruction')}}">Checkout</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-wallet2"></i>
+                        </span>
+                        <span>Buyer</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a  href="{{route('errorpage.underconstruction')}}">Dashboard</a>
+                        </li>
+                        <li>
+                            <a  href="{{route('errorpage.underconstruction')}}">Orders</a>
+                        </li>
+                        <li>
+                            <a  href="{{route('errorpage.underconstruction')}}">Addresses</a>
+                        </li>
+                        <li>
+                            <a  href="{{route('errorpage.underconstruction')}}">Wishlist</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a  href="./customers.html">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-person-badge"></i>
+                        </span>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-receipt"></i>
+                        </span>
+                        <span>Invoices</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{route('errorpage.underconstruction')}}" >List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('errorpage.underconstruction')}}" >Detail</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-receipt"></i>
+                        </span>
+                        <span>Master Data</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="{{ $isActive == 'category'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Category Master</a>
+                        </li>
+                        <li>
+                            <a href="{{route('errorpage.underconstruction')}}" >Detail</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="menu-divider">Pages</li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-person"></i>
+                        </span>
+                        <span>Profile</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a  href="{{route('errorpage.underconstruction')}}">Post</a>
+                        </li>
+                        <li>
+                            <a  href="{{route('errorpage.underconstruction')}}">Connections</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-person-circle"></i>
+                        </span>
+                        <span>Users</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a  href="{{route('errorpage.underconstruction')}}">List View</a>
+                        </li>
+                        <li>
+                            <a  href="{{route('errorpage.underconstruction')}}">Grid View</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-lock"></i>
+                        </span>
+                        <span>Authentication</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{route('errorpage.underconstruction')}}" target="_blank">Login</a>
+                        </li>
+                        <li>
+                            <a href="{{route('errorpage.underconstruction')}}" target="_blank">Register</a>
+                        </li>
+                        <li>
+                            <a href="{{route('errorpage.underconstruction')}}" target="_blank">Reset Password</a>
+                        </li>
+                        <li>
+                            <a href="{{route('errorpage.underconstruction')}}" target="_blank">Lock Screen</a>
+                        </li>
+                        <li>
+                            <a href="{{route('errorpage.underconstruction')}}" target="_blank">Account Verified</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-exclamation-octagon"></i>
+                        </span>
+                        <span>Error Pages</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="./404.html" target="_blank">404</a>
+                        </li>
+                        <li>
+                            <a  href="./access-denied.html">Access Denied</a>
+                        </li>
+                        <li>
+                            <a href="./under-construction.html" target="_blank">Under Construction</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a  href="./settings.html">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-gear"></i>
+                        </span>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a  href="./pricing-table.html">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-wallet2"></i>
+                        </span>
+                        <span>Pricing Table</span>
+                        <span class="badge bg-success ms-auto">New</span>
+                    </a>
+                </li>
+                <li>
+                    <a  href="./search-page.html">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <span>Search Page</span>
+                    </a>
+                </li>
+                <li>
+                    <a  href="./faq.html">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-question-circle"></i>
+                        </span>
+                        <span>FAQ</span>
+                    </a>
+                </li>
+                <li class="menu-divider">Other</li>
+                <li>
+                    {{-- <a target="_blank" href="">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-file-earmark-medical"></i>
+                        </span>
+                        <span>Logout</span>
+                    </a> --}}
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-file-earmark-medical"></i>
+                        </span>
+                        <span>Logout</span>
+                        </button>
+                    </form>
+                    
+                </li>
+            </ul>
+        @elseif($userrole == 7)
+            <ul>
+                <li class="menu-divider">Dashboard</li>
+                <li >
+                    <a  class="{{ $isActive == 'dashboard'  ? 'active' : ''}}"  href="{{route('dashboard.index')}}">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-bar-chart"></i>
+                        </span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li >
+                    <a  class="{{ $isActive == 'profile'  ? 'active' : ''}}"  href="{{route('dashboard.index')}}">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-person dropdown-item-icon"></i>
+                        </span>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">
+                        <span class="nav-link-icon">
+                            <i class="bi bi-file-earmark-medical"></i>
+                        </span>
+                        <span>Logout</span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        @else
+        @endif
+
     </div>
 </div>
 <!-- ./  menu -->

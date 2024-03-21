@@ -136,11 +136,13 @@ class ProductController extends Controller
 
     public function remove(Request $request)
     {
-        if ($request->product_id) {
+        $request->id = 0;
+        // dd($request->id);
+        if ($request->id) {
             $cart = session()->get('cart');
 
-            if (isset($cart[$request->product_id])) {
-                unset($cart[$request->product_id]);
+            if (isset($cart[$request->id])) {
+                unset($cart[$request->id]);
                 session()->put('cart', $cart);
             }
 

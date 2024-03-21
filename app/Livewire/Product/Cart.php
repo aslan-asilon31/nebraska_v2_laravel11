@@ -12,8 +12,9 @@ class Cart extends Component
     {
         // Load cart data from session on every render
         $this->cart = Session::get('cart', []);
-
-        return view('livewire.product.cart'); // Pass cart data to view
+        return view('livewire.product.cart')
+        ->layout('components.layouts.app_cart');
+        
     }
 }
 

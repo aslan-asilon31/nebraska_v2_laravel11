@@ -109,7 +109,7 @@ class Index extends Component
         $this->category_bag= DB::connection('pgsql')->select($sql_category_bag);
         
 
-        $sql_new_arrival = "SELECT a.product_id,a.category_master_id,a.status_master_id, a.image_banner,
+        $sql_new_arrival = "SELECT a.id, a.product_id,a.category_master_id,a.status_master_id, a.image_banner,
                                 a.name as product_name, a.price_master_id,a.desc,
                                 c.price_before as price_before, c.price_after as price_after, c.discount,
                                 d.name as category_name
@@ -128,6 +128,7 @@ class Index extends Component
         $this->new_arrival= DB::connection('pgsql')->select($sql_new_arrival);
 
         $this->cart = session()->get('cart', []);
+        // dd($this->cart);
 
 
     }

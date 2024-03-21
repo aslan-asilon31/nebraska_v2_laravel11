@@ -9,15 +9,16 @@ use Illuminate\Support\Facades\Session;
 
 class CartAdd extends Component
 {
-    public $product_id;
+    public $id;
 
-    public function mount($product_id)
+    public function mount($id)
     {
-        $this->product_id = $product_id;
+         
 
         // Check for product existence before adding to cart
         try {
-            $product = Product::findOrFail($product_id);
+            $product = Product::findOrFail($this->id);
+            // dd($product);
             $this->addToCart($product);
             // $this->emit('cartUpdated'); // Emit event for potential cart update
             // $this->redirect()->with('success', 'Product added to cart successfully!');
@@ -26,7 +27,9 @@ class CartAdd extends Component
             toast('Your Post as been submited!','success');
             $this->redirect('/');
         } catch (ModelNotFoundException $e) {
-            // Handle product not found scenario
+            // Alert::success('Hore!', 'Post Created Successfully');
+            toast('Product added to cart failed!','failed');
+            $this->redirect('/');
         }
     }
 

@@ -18,10 +18,11 @@ Route::middleware([
 });
 
 
+
 Route::get('welcome-category-detail', App\Livewire\Welcome\ProductCategoryDetail::class)->name('welcome.category.detail');
 
 
-Route::get('dashboard', App\Livewire\Dashboard\Index::class)->name('dashboard.index');
+Route::get('dashboard', App\Livewire\Dashboard\Index::class)->name('dashboard.index')->middleware('auth');
 
 Route::get('category', App\Livewire\Category\Index::class)->name('category.index');
 
@@ -44,7 +45,7 @@ Route::get('add-to-cart/{product_id}', App\Livewire\Product\CartAdd::class)->nam
 
 Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
 
-Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('remove.from.cart');
+Route::delete('remove-from-cart/{id}', [ProductController::class, 'remove'])->name('remove.from.cart');
 // Route::delete('remove-from-cart', App\Livewire\Product\CartRemove::class)->name('remove.from.cart');
 
 
@@ -67,7 +68,8 @@ Route::get('profile', App\Livewire\Profile\Index::class)->name('profile.index');
 
 Route::get('user', App\Livewire\User\Index::class)->name('user.index');
 Route::get('user-grid', App\Livewire\User\Grid::class)->name('user.grid');
-
+Route::get('user-create/{id}', App\Livewire\User\Create::class)->name('user.create');
+// Route::livewire('/user-edit/{id}', 'user.edit')->name('user.edit');
 
 Route::get('auth-login', App\Livewire\Authentication\Login::class)->name('authentication.login');
 Route::get('auth-register', App\Livewire\Authentication\Register::class)->name('authentication.register');

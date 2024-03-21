@@ -1619,20 +1619,20 @@
                               @endif
                        </a> --}}
 
+                       {{-- <a href="{{ route('remove.from.cart', $nrl->product_id) }}" class="" style="background-color:red;font-size:16px;font-weight:bold; border-radius:10px;padding:3px;color:white;width:50%;text-align:center;" title="Remove from Cart">
+                           Remove from Cart
+                       </a> --}}
 
-                              @if(isset($cart[$nrl->product_id]))
-                                {{-- <a href="{{ route('remove.from.cart', $nrl->product_id) }}" class="" style="background-color:red;font-size:16px;font-weight:bold; border-radius:10px;padding:3px;color:white;width:50%;text-align:center;" title="Remove from Cart">
-                                    Remove from Cart
-                                </a> --}}
-                                <form action="{{ route('remove.from.cart',$nrl->product_id) }}" method="POST">
+                              @if(isset($cart[$nrl->id]))
+                                <form action="{{ route('remove.from.cart',$nrl->id) }}" method="POST">
                                   @csrf
                                   @method('DELETE')
                                   <button type="submit" id="dealOfTheDay" class="" style="background-color:red;font-size:16px;font-weight:bold; border-radius:10px;padding:3px;color:white;width:50%;text-align:center;" title="Remove from Cart">
                                       Remove from Cart
                                   </button>
-                              </form>
+                                </form>
                               @else
-                                <a href="{{ route('add.to.cart', $nrl->product_id) }}" class="add-cart-btn" title="Add to Cart">
+                                <a href="{{ route('add.to.cart', $nrl->id) }}" class="add-cart-btn" title="Add to Cart">
                                     Add to Cart
                                 </a>
                               @endif

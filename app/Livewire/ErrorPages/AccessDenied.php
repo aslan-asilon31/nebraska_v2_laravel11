@@ -8,6 +8,8 @@ class AccessDenied extends Component
 {
     public function render()
     {
-        return view('livewire.error-pages.access-denied');
+        $isActive = 'access-denied';
+        return view('livewire.error-pages.access-denied',compact('isactive'))
+        ->layout('app_errorpage',compact('isactive'));
     }
 }
