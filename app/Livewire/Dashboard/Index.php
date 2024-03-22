@@ -5,7 +5,6 @@ namespace App\Livewire\Dashboard;
 use Livewire\Component;
 use App\Models\MasterData\CategoryMaster;
 use Illuminate\Support\Facades\Auth;
-
 use Alert;
 
 class Index extends Component

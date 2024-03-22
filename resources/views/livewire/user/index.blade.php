@@ -44,6 +44,11 @@
                         <a href="#" class="dropdown-item">Something else here</a>
                     </div>
                 </div>
+                <div class="dropdown ms-auto">
+                    <a href="{{route('user.create')}}" class="btn bg-purple text-white btn-icon">
+                        <i class="bi bi-plus-circle"></i> Create User
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -81,10 +86,59 @@
                         </td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>Staff</td>
-                        <td>
-                            <span class="badge bg-danger">Blocked</span>
-                        </td>
+
+
+                        @if ($user->role == 1)
+                                <td>
+                                    <span class="badge bg-danger">Superadmin</span>
+                                </td>
+                            @elseif ($user->role == 2)
+                                <td>
+                                    <span class="badge bg-danger">Admin</span>
+                                </td>
+                            @elseif ($user->role == 3)
+                                <td>
+                                    <span class="badge bg-danger">Manager</span>
+                                </td>
+                            @elseif ($user->role == 4)
+                                <td>
+                                    <span class="badge bg-danger">Superadmin</span>
+                                </td>
+                            @elseif ($user->role == 5)
+                                <td>
+                                    <span class="badge bg-danger">Supervisor</span>
+                                </td>
+                            @elseif ($user->role == 6)
+                                <td>
+                                    <span class="badge bg-danger">User</span>
+                                </td>
+                            @elseif ($user->role == 7)
+                                <td>
+                                    <span class="badge bg-danger">Visitor</span>
+                                </td>
+                            @elseif ($user->role == 8)
+                                <td>
+                                    <span class="badge bg-danger">Buyer</span>
+                                </td>
+                            @elseif ($user->role == 9)
+                                <td>
+                                    <span class="badge bg-danger">Customer</span>
+                                </td>
+                            @else
+                                <td>
+                                    <span class="badge bg-danger">-</span>
+                                </td>
+                        @endif
+
+
+                        @if ($user->status_id == 1)
+                            <td class="" style="font-weight:bolder;text-align:center;background-color:blueviolet;color:white;">Active</td>
+                            @elseif ($user->status_id == 2)
+                                <td class="" style="font-weight:bolder;text-align:center;background-color:black;color:white;">Inactive</td>
+                            @else
+                                <td>-</td>
+                        @endif
+
                         <td class="text-end">
                             <div class="dropdown">
                                 <a href="#" data-bs-toggle="dropdown"

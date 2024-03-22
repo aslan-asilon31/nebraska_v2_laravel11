@@ -703,7 +703,7 @@
                     </a>
                     <ul>
                         <li>
-                            <a  href="{{route('errorpage.underconstruction')}}">List View</a>
+                            <a  href="{{route('user.index')}}">List User</a>
                         </li>
                         <li>
                             <a  href="{{route('errorpage.underconstruction')}}">Grid View</a>
@@ -955,8 +955,8 @@
             </li>
             <li class="nav-item ms-3">
                     <button class="btn bg-purple text-white btn-icon">
-        <i class="bi bi-plus-circle"></i> Create Report
-    </button>
+                        <i class="bi bi-plus-circle"></i> Create Report
+                    </button>
             </li>
         </ul>
     </div>

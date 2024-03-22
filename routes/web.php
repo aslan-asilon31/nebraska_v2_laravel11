@@ -11,6 +11,9 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+
+
+    
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -66,9 +69,10 @@ Route::get('invoice-detail', App\Livewire\Invoice\Detail::class)->name('invoice.
 Route::get('profile', App\Livewire\Profile\Index::class)->name('profile.index');
 
 
-Route::get('user', App\Livewire\User\Index::class)->name('user.index');
-Route::get('user-grid', App\Livewire\User\Grid::class)->name('user.grid');
-Route::get('user-create/{id}', App\Livewire\User\Create::class)->name('user.create');
+Route::get('user', App\Livewire\User\Index::class)->name('user.index')->middleware('auth');    
+Route::get('user-grid', App\Livewire\User\Grid::class)->name('user.grid')->middleware('auth'); 
+Route::get('user-create', App\Livewire\User\Create::class)->name('user.create')->middleware('auth');   
+Route::get('user-add/{id}', App\Livewire\User\Add::class)->name('user.add')->middleware('auth');   
 // Route::livewire('/user-edit/{id}', 'user.edit')->name('user.edit');
 
 Route::get('auth-login', App\Livewire\Authentication\Login::class)->name('authentication.login');
@@ -81,7 +85,6 @@ Route::get('auth-accountverified', App\Livewire\Authentication\Accountverified::
 Route::get('error-access-denied', App\Livewire\ErrorPages\AccessDenied::class)->name('errorpage.accessdenied');
 Route::get('error-404', App\Livewire\ErrorPages\Error404::class)->name('errorpage.error404');
 Route::get('error-under-construction', App\Livewire\ErrorPages\UnderConstruction::class)->name('errorpage.underconstruction');
-
 
 
 
