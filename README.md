@@ -22,4 +22,5 @@ new update on branch development :
 <br>
 [Nebraska v2 ReactJS](https://github.com/aslan-asilon34/nebraska_v2_vuejs.git)
 <br>
-![Nebraska v2 - canva -purple](https://github.com/aslan-asilon31/nebraska_v2_laravel11/assets/116990574/410548e7-6326-49a0-bb57-c47cc2ee69ad)
+![laravel11](https://github.com/aslan-asilon31/nebraska_v2_laravel11/assets/116990574/81bdf56b-728d-40ba-b3ed-6591396b99af)
+
