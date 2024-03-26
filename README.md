@@ -8,7 +8,7 @@ new update on branch development :
 <br>
 [Nebraska v2 Codeigniter 4](https://github.com/aslan-asilon31/nebraska_v2_codeigniter4)
 <br>
-[Nebraska v2 Codeigniter Yii2](https://github.com/aslan-asilon31/nebraska_v2_yii2)
+[Nebraska v2 Yii2](https://github.com/aslan-asilon31/nebraska_v2_yii2)
 <br>
 [Nebraska v2 Python Django](https://github.com/aslan-asilon33/nebraska_v2_django.git)
 <br>
