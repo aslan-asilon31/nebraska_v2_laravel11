@@ -16,7 +16,7 @@ new update on branch development :
 <br>
 [Nebraska v2 NuxtJS](https://github.com/aslan-asilon34/nebraska_v2_nuxtjs.git)
 <br>
-[Nebraska v2 NextJS](https://github.com/aslan-asilon34/nebraska_v2_nuxtjs.git)
+[Nebraska v2 NextJS](https://github.com/aslan-asilon34/nebraska_v2_nextjs.git)
 <br>
 [Nebraska v2 VueJS](https://github.com/aslan-asilon34/nebraska_v2_vuejs.git)
 <br>
