@@ -28,7 +28,12 @@
                 <div class="d-md-flex align-items-center mb-3">
                     <div class="d-flex align-items-center">
                         <div class="display-7 me-3" style="font-weight:bolder;">
-                            <i class="bi bi-bag-check me-2 text-success"></i> Rp 8.490.120.200
+                            <i class="bi bi-bag-check me-2 text-success"></i> Rp 
+                            <?php $totalPrice = 0; ?>
+                            @foreach ($orders as $order)
+                                <?php $totalPrice += $order['total_price']; ?>
+                            @endforeach
+                            {{ number_format($totalPrice, 2, '.', ',') }}
                         </div>
                         <span class="text-success">
                             <i class="bi bi-arrow-up me-1 small"></i>8.30%

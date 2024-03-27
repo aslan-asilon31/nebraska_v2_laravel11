@@ -28,7 +28,7 @@ class Index extends Component
         $categories = CategoryMaster::select('category_master_id')->get();
         $username = Auth::user()->name;
         $userrole = Auth::user()->role;
-        $users = User::orderBy('id','asc')->paginate(3);
+        $users = User::orderBy('id','desc')->paginate(3);
 
         return view('livewire.user.index', compact('users','isActive','username','userrole'))
             ->layout('components.layouts.app_backend', ['isActive' => $isActive,'categories' => $categories,'username' => $username, 'userrole' => $userrole]);

@@ -1,0 +1,53 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Nebraska v2 API Documentation",
+        "description": "Lorem Ipsum",
+        "contact": {
+            "email": "sulaslansetiawan3@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/v1",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/product-api": {
+            "get": {
+                "tags": [
+                    "Product API"
+                ],
+                "summary": "Product",
+                "description": "get Data Product",
+                "operationId": "product",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Success get data Product",
+                                    "data": [
+                                        {
+                                            "id": "1",
+                                            "name": "Pendidikan"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

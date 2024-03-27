@@ -7,21 +7,19 @@
         <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary"><span>Products</span><a class="font-size-sm" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" style="width: 1rem; height: 1rem;"><polyline points="15 18 9 12 15 6"></polyline></svg>Continue shopping</a></h2>
         
 
-        @forelse ($cart as $crt)
+        @forelse ($carts as $id => $item)
             <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                 <div class="media d-block d-sm-flex text-center text-sm-left">
                 <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://www.bootdey.com/image/240x240/FF0000/000000" alt="Product"></a>
                 <div class="media-body pt-3">
-                <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">{{ $crt->name }}</a></h3>
-                <div class="font-size-sm"><span class="text-muted mr-2">Size:</span>8.5</div>
-                <div class="font-size-sm"><span class="text-muted mr-2">Color:</span>Black</div>
-                <div class="font-size-lg text-primary pt-2">$125.00</div>
+                <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">{{ $item['product_name'] }}</a></h3>
+                <div class="font-size-lg text-primary pt-2">Rp {{ $item['price_after'] }}</div>
                 </div>
                 </div>
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
                 <div class="form-group mb-2">
                 <label for="quantity1">Quantity</label>
-                <input class="form-control form-control-sm" type="number" id="quantity1" value="1">
+                <input class="form-control form-control-sm" type="number" id="quantity1" value="{{ $item['quantity'] }}">
                 </div>
                 <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw mr-1">
@@ -53,15 +51,26 @@
         
         <div class="col-xl-3 col-md-4 pt-3 pt-md-0">
         <h2 class="h6 px-4 py-3 bg-secondary text-center">Subtotal</h2>
-        <div class="h3 font-weight-semibold text-center py-3">$325.00</div>
+        @if (count($carts) > 0)
+            <div class="h3 font-weight-semibold text-center py-3">
+                Rp {{ array_sum(array_column($carts, 'price_after')) }}
+            </div>
+        @else
+            <p>Your cart is empty.</p>
+        @endif
         <hr>
         <h3 class="h6 pt-4 font-weight-semibold"><span class="badge badge-success mr-2">Note</span>Additional comments</h3>
         <textarea class="form-control mb-3" id="order-comments" rows="5"></textarea>
-        <a class="btn btn-primary btn-block" href="#">
+
+
+        <a type="button" id="pay-button" class="btn btn-primary btn-block" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2">
         <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
         <line x1="1" y1="10" x2="23" y2="10"></line>
-        </svg>Proceed to Checkout</a>
+        </svg>Proceed to Checkout
+        </a>
+
+
         <div class="pt-4">
         <div class="accordion" id="cart-accordion">
         <div class="card">
@@ -307,5 +316,36 @@
       
     
     </script> --}}
+
+
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
+    </script>
+    <script>
+        const payButton = document.querySelector('#pay-button');
+        payButton.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            snap.pay('{{ $snapToken }}', {
+                // Optional
+                onSuccess: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result)
+                },
+                // Optional
+                onPending: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result)
+                },
+                // Optional
+                onError: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result)
+                }
+            });
+        });
+    </script>
 
 </div>

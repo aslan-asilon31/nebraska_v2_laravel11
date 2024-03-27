@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\MasterData\CategoryMaster;
 use Illuminate\Support\Facades\Auth;
 use Alert;
+use App\Models\Order;
 
 class Index extends Component
 {
@@ -16,7 +17,7 @@ class Index extends Component
     public function render()
     {
         $isActive = 'dashboard' ;
-
+        $orders = Order::all();
         $categories = CategoryMaster::select('category_master_id')->get();
         $username = Auth::user()->name;
         $userrole = Auth::user()->role;
@@ -26,7 +27,7 @@ class Index extends Component
         //     and other HTML tags
         // ",'success');
             
-        return view('livewire.dashboard.index', compact('isActive','username','userrole'))
+        return view('livewire.dashboard.index', compact('orders','isActive','username','userrole'))
             ->layout('components.layouts.app_backend', ['isActive' => $isActive,'categories' => $categories,'username' => $username, 'userrole' => $userrole]);
     }
 }

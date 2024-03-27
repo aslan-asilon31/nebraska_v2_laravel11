@@ -9,6 +9,7 @@ use App\Models\MasterData\CategoryMaster;
 use Illuminate\Support\Facades\Auth;
 use Alert;
 use Livewire\WithPagination;
+use Illuminate\Http\Request;
 
 
 class Create extends Component
@@ -16,6 +17,7 @@ class Create extends Component
 
     public function render()
     {
+        
         $isActive = 'user';
         $categories = CategoryMaster::select('category_master_id')->get();
         $username = Auth::user()->name;

@@ -3,18 +3,18 @@
 namespace App\Livewire\User;
 
 use Livewire\Component;
-use App\Models\User;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use App\Models\MasterData\CategoryMaster;
 use Illuminate\Support\Facades\Auth;
 use Alert;
 use Livewire\WithPagination;
 use Illuminate\Http\Request;
-use Livewire\Attributes\Rule;
+use Livewire\WithFileUploads;
 
-// use Illuminate\Support\Facades\Request;
 
-class Edit extends Component
+
+class Update extends Component
 {
     use WithFileUploads;
     use WithPagination;
@@ -91,83 +91,83 @@ class Edit extends Component
 
         $imagePath = null;
 
-        if ($user && $this->image) {
-            // Delete old image
-            $newImage = str_replace("public/users/", "", $this->image);
-            Storage::disk('local')->delete('public/users/' . $user->image);
+        // if ($user && $this->image) {
+        //     // Delete old image
+        //     $newImage = str_replace("public/users/", "", $this->image);
+        //     Storage::disk('local')->delete('public/users/' . $user->image);
     
-            // Upload new image
-            if ($request->hasFile('image')) {
-                // Store the file
-                $imagePath = $request->file('image')->storeAs('public/users', $request->file('image')->hashName());
-                // Rest of your logic
-            }
-        }
-    
-        dd($imagePath);
-        //check if image
-        // if ($this->image && $this->image->isValid()) {
-
-        //     // If a new image is uploaded, delete the old one and store the new one
-        //     //store image in storage/app/public/users
-        //     // $this->image->storeAs('public/users', $this->image->hashName());
-
-        //     $oldImage = $user->image;
-        //     // dd($oldImage);
-        //     if ($oldImage) {
-        //         Storage::disk('public')->delete($oldImage);
+        //     // Upload new image
+        //     if ($request->hasFile('image')) {
+        //         // Store the file
+        //         $imagePath = $request->file('image')->storeAs('public/users', $request->file('image')->hashName());
+        //         // Rest of your logic
         //     }
-        //     $imagePath = Storage::disk('public')->putFile('users', $this->image);
-        //     // $this->user->image = $imagePath;
-
-        //     //update user
-        //     $user->update([
-        //         'image' => $imagePath,
-        //         'name' => $this->name,
-        //         'email' => $this->email,
-        //         'gender' => $this->gender,
-        //         'role' => $this->role,
-        //         'status_id' => $this->status_id,
-        //         'phone' => $this->phone,
-        //         'website' => $this->website,
-        //         'language' => $this->language,
-        //         'address1' => $this->address1,
-        //         'address2' => $this->address2,
-        //         'post_code' => $this->post_code,
-        //         'city' => $this->city,
-        //         'state' => $this->state,
-        //         'country' => $this->role,
-        //         'social_x' => $this->social_x,
-        //         'social_fb' => $this->social_fb,
-        //         'social_ig' => $this->social_ig,
-        //         'social_github' => $this->social_github,
-        //     ]);
-
-
-        // }else{
-        //     //update user
-        //     $post->update([
-        //         'name' => $this->name,
-        //         'email' => $this->email,
-        //         'gender' => $this->gender,
-        //         'role' => $this->role,
-        //         'status_id' => $this->status_id,
-        //         'phone' => $this->phone,
-        //         'website' => $this->website,
-        //         'language' => $this->language,
-        //         'address1' => $this->address1,
-        //         'address2' => $this->address2,
-        //         'post_code' => $this->post_code,
-        //         'city' => $this->city,
-        //         'state' => $this->state,
-        //         'country' => $this->role,
-        //         'social_x' => $this->social_x,
-        //         'social_fb' => $this->social_fb,
-        //         'social_ig' => $this->social_ig,
-        //         'social_github' => $this->social_github,
-        //     ]);
-            
         // }
+    
+        // dd($imagePath);
+        //check if image
+        if ($request->hasFile('image')) {
+
+            // If a new image is uploaded, delete the old one and store the new one
+            //store image in storage/app/public/users
+            // $this->image->storeAs('public/users', $this->image->hashName());
+
+            $oldImage = $user->image;
+            // dd($oldImage);
+            if ($oldImage) {
+                Storage::disk('public')->delete($oldImage);
+            }
+            $imagePath = Storage::disk('public')->putFile('users', $this->image);
+            // $this->user->image = $imagePath;
+
+            //update user
+            $user->update([
+                'image' => $imagePath,
+                'name' => $this->name,
+                'email' => $this->email,
+                'gender' => $this->gender,
+                'role' => $this->role,
+                'status_id' => $this->status_id,
+                'phone' => $this->phone,
+                'website' => $this->website,
+                'language' => $this->language,
+                'address1' => $this->address1,
+                'address2' => $this->address2,
+                'post_code' => $this->post_code,
+                'city' => $this->city,
+                'state' => $this->state,
+                'country' => $this->role,
+                'social_x' => $this->social_x,
+                'social_fb' => $this->social_fb,
+                'social_ig' => $this->social_ig,
+                'social_github' => $this->social_github,
+            ]);
+
+
+        }else{
+            //update user
+            $post->update([
+                'name' => $this->name,
+                'email' => $this->email,
+                'gender' => $this->gender,
+                'role' => $this->role,
+                'status_id' => $this->status_id,
+                'phone' => $this->phone,
+                'website' => $this->website,
+                'language' => $this->language,
+                'address1' => $this->address1,
+                'address2' => $this->address2,
+                'post_code' => $this->post_code,
+                'city' => $this->city,
+                'state' => $this->state,
+                'country' => $this->role,
+                'social_x' => $this->social_x,
+                'social_fb' => $this->social_fb,
+                'social_ig' => $this->social_ig,
+                'social_github' => $this->social_github,
+            ]);
+            
+        }
               
         
         // Update other fields
@@ -197,13 +197,13 @@ class Edit extends Component
  
     public function render()
     {
-        $users = User::findOrFail($this->userId);
+        $users = User::find($this->userId);
         $isActive = 'user' ;
         $username = Auth::user()->name;
         $userrole = Auth::user()->role;
 
 
-        return view('livewire.user.edit', compact('users','isActive','username','userrole'))
+        return view('livewire.user.index', compact('users','isActive','username','userrole'))
         ->layout('components.layouts.app_backend', ['isActive' => $isActive,'username' => $username, 'userrole' => $userrole]);
     }
 

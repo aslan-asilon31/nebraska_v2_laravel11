@@ -3,266 +3,312 @@
         <div class="col-md-8">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="mb-4">
-                        <div class="d-flex flex-column flex-md-row text-center text-md-start mb-3">
-                            <figure class="me-4 flex-shrink-0">
-                                <img width="100" class="rounded-pill"
-                                     src="" alt="...">
-                            </figure>
-                            <div class="flex-fill">
-                                <h5 class="mb-3">Add Avatar</h5>
-                                <input type="file" class="btn btn-primary " name="image">
-                                <button class="btn btn-outline-danger btn-icon" data-bs-toggle="tooltip" title="Remove Avatar">
-                                    <i class="bi bi-trash me-0"></i>
-                                </button>
-                                <p class="small text-muted mt-3">For best results, use an image at least
-                                    256px by 256px in either .jpg or .png format</p>
+                    <form action="{{ route('user.add') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-4">
+                            <div class="col-12" style="display:flex;">
+                                <div class="col-6">
+                                    <div class="mb-4">
+                                        <figure class="me-4 flex-shrink-0">
+                                            <img id="avatar-preview" width="150" class="" src="{{ asset('image-before-upload.png') }}" alt="Preview Avatar">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-4">
+                                        <div class="flex-fill" >
+                                            <h5 class="mb-3">Add Avatar</h5>
+                                            <input type="file" style="width:150px;" class="btn btn-primary form-control @error('image') is-invalid @enderror" name="image" id="avatar-input">
+                                            <button class="btn btn-outline-danger btn-icon" data-bs-toggle="tooltip" title="Remove Avatar" id="remove-avatar">
+                                                <i class="bi bi-trash me-0"></i>
+                                            </button>
+                                            <p class="small text-muted mt-3">For best results, use an image at least
+                                                256px by 256px in either .jpg or .png format</p>
+                                        </div>
+                                        @error('image')
+                                            <span class="invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-4">Basic Information</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Name <span style="color: red">*</span></label>
+                                                <input type="text" class="form-control @error('name') is-invalid @enderror" value="" name="name" placeholder="insert name">
+                                                @error('name')
+                                                    <span class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
+                        
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Email <span style="color: red">*</span></label>
+                                                <input type="text" class="form-control @error('email') is-invalid @enderror" value="" name="email" placeholder="insert your email">
+                                                @error('email')
+                                                    <span class="invalid-feedback">
+                                                            {{ $message }}
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Date of Birth </label>
+                                                <div class="d-flex gap-3">
+                                                    <select class="form-select"  name="daybirth">
+                                                        <option selected="">Day</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>7</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                        <option>13</option>
+                                                        <option>14</option>
+                                                        <option>15</option>
+                                                        <option>16</option>
+                                                        <option>17</option>
+                                                        <option>18</option>
+                                                        <option>19</option>
+                                                        <option>20</option>
+                                                        <option>21</option>
+                                                        <option>22</option>
+                                                        <option>23</option>
+                                                        <option>24</option>
+                                                        <option>25</option>
+                                                        <option>26</option>
+                                                        <option>27</option>
+                                                        <option>28</option>
+                                                        <option>29</option>
+                                                        <option>30</option>
+                                                    </select>
+                                                    <select class="form-select"  name="monthbirth">
+                                                        <option selected="">Month</option>
+                                                        <option value="1" >Jan</option>
+                                                        <option value="2">Feb</option>
+                                                        <option value="3">Mar</option>
+                                                        <option value="4">Apr</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">Jun</option>
+                                                        <option value="7">Jul</option>
+                                                        <option value="8">Aug</option>
+                                                        <option value="9">Sep</option>
+                                                        <option value="10">Oct</option>
+                                                        <option value="11">Nov</option>
+                                                        <option value="12">Dec</option>
+                                                    </select>
+                                                    <select class="form-select"  name="yearbirth">
+                                                        <option selected="">Year</option>
+                                                        <option name="2024">2024</option>
+                                                        <option name="2023">2023</option>
+                                                        <option name="2022">2022</option>
+                                                        <option name="2021">2021</option>
+                                                        <option name="2020">2020</option>
+                                                        <option name="2019">2019</option>
+                                                        <option name="2018">2018</option>
+                                                        <option name="2017">2017</option>
+                                                        <option name="2016">2016</option>
+                                                        <option name="2015">2015</option>
+                                                        <option name="2014">2014</option>
+                                                        <option name="2013">2013</option>
+                                                        <option name="2012">2012</option>
+                                                        <option name="2011">2011</option>
+                                                        <option name="2010">2010</option>
+                                                        <option name="2009">2009</option>
+                                                        <option name="2008">2008</option>
+                                                        <option name="2007">2007</option>
+                                                        <option name="2006">2006</option>
+                                                        <option name="2005">2005</option>
+                                                        <option name="2004">2004</option>
+                                                        <option name="2003">2003</option>
+                                                        <option name="2002">2002</option>
+                                                        <option name="2001">2001</option>
+                                                        <option name="2000">2000</option>
+                                                        <option name="1999">1999</option>
+                                                        <option name="1998">1998</option>
+                                                        <option name="1997">1997</option>
+                                                        <option name="1996">1996</option>
+                                                        <option name="1995">1995</option>
+                                                        <option name="1994">1994</option>
+                                                        <option name="1993">1993</option>
+                                                        <option name="1992">1992</option>
+                                                        <option name="1991">1991</option>
+                                                        <option name="1990">1990</option>
+                                                        <option name="1989">1989</option>
+                                                        <option name="">1988</option>
+                                                        <option name="">1987</option>
+                                                        <option name="">1986</option>
+                                                        <option name="">1985</option>
+                                                        <option name="">1984</option>
+                                                        <option name="">1983</option>
+                                                        <option name="">1982</option>
+                                                        <option name="">1981</option>
+                                                        <option name="">1980</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Gender</label>
+                                                <div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" id="inlineRadio1" name="gender" value="male"
+                                                            class="form-check-input ">
+                                                        <label class="form-check-label" for="inlineRadio1">Male</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" id="inlineRadio2"  name="gender" value="female"
+                                                            class="form-check-input ">
+                                                        <label class="form-check-label"
+                                                            for="inlineRadio2">Female</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" id="inlineRadio3" name="gender" value="other"
+                                                            class="form-check-input ">
+                                                        <label class="form-check-label" for="inlineRadio3">Other</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Role</label>
+                                                <select class="form-select " name="role">
+                                                    <option value="" selected>All</option>
+                                                    <option value="1">Superadmin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">Manager</option>
+                                                    <option value="4" >Supervisor</option>
+                                                    <option value="5" >User</option>
+                                                    <option value="6" >Visitor</option>
+                                                    <option value="7" >Buyer</option>
+                                                    <option value="8" >Customer</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label ">Status</label>
+                                                <select class="form-select " name="status_id">
+                                                    <option value="" selected>All</option>
+                                                    <option value="1" >Active</option>
+                                                    <option value="2">Inactive</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Department</label>
+                                                <select class="form-select " name="department">
+                                                    <option value="" selected>All</option>
+                                                    <option value="">Sales</option>
+                                                    <option value="" >Development</option>
+                                                    <option value="">Management</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Section</label>
+                                                <select class="form-select " name="section">
+                                                    <option value="" selected>All</option>
+                                                    <option value="">Sales</option>
+                                                    <option value="" >Development</option>
+                                                    <option value="">Management</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <h6 class="card-title mb-4">Basic Information</h6>
+                                <h6 class="card-title mb-4">Contact</h6>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Name</label>
-                                            <input type="text" class="form-control" value="" name="name">
+                                            <label class="form-label">Phone <span style="color: red">*</span></label>
+                                            <input type="text" class="form-control @error('phone') is-invalid @enderror" value="" name="phone" placeholder="+62 8123456789">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Date of Birth</label>
-                                            <div class="d-flex gap-3">
-                                                <select class="form-select">
-                                                    <option selected="">Day</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option>9</option>
-                                                    <option>10</option>
-                                                    <option>11</option>
-                                                    <option>12</option>
-                                                    <option>13</option>
-                                                    <option>14</option>
-                                                    <option>15</option>
-                                                    <option>16</option>
-                                                    <option>17</option>
-                                                    <option>18</option>
-                                                    <option>19</option>
-                                                    <option>20</option>
-                                                    <option>21</option>
-                                                    <option>22</option>
-                                                    <option>23</option>
-                                                    <option>24</option>
-                                                    <option>25</option>
-                                                    <option>26</option>
-                                                    <option>27</option>
-                                                    <option>28</option>
-                                                    <option>29</option>
-                                                    <option>30</option>
-                                                </select>
-                                                <select class="form-select">
-                                                    <option>Month</option>
-                                                    <option selected="">Jan</option>
-                                                    <option>Feb</option>
-                                                    <option>Mar</option>
-                                                    <option>Apr</option>
-                                                    <option>May</option>
-                                                    <option>Jun</option>
-                                                    <option>Jul</option>
-                                                    <option>Aug</option>
-                                                    <option>Sep</option>
-                                                    <option>Oct</option>
-                                                    <option>Nov</option>
-                                                    <option>Dec</option>
-                                                </select>
-                                                <select class="form-select">
-                                                    <option>Year</option>
-                                                    <option>2018</option>
-                                                    <option>2017</option>
-                                                    <option>2016</option>
-                                                    <option>2015</option>
-                                                    <option>2014</option>
-                                                    <option>2013</option>
-                                                    <option>2012</option>
-                                                    <option>2011</option>
-                                                    <option>2010</option>
-                                                    <option>2009</option>
-                                                    <option>2008</option>
-                                                    <option>2007</option>
-                                                    <option>2006</option>
-                                                    <option>2005</option>
-                                                    <option>2004</option>
-                                                    <option>2003</option>
-                                                    <option>2002</option>
-                                                    <option>2001</option>
-                                                    <option>2000</option>
-                                                    <option>1999</option>
-                                                    <option>1998</option>
-                                                    <option>1997</option>
-                                                    <option>1996</option>
-                                                    <option>1995</option>
-                                                    <option>1994</option>
-                                                    <option>1993</option>
-                                                    <option>1992</option>
-                                                    <option>1991</option>
-                                                    <option>1990</option>
-                                                    <option selected="">1989</option>
-                                                    <option>1988</option>
-                                                    <option>1987</option>
-                                                    <option>1986</option>
-                                                    <option>1985</option>
-                                                    <option>1984</option>
-                                                    <option>1983</option>
-                                                    <option>1982</option>
-                                                    <option>1981</option>
-                                                    <option>1980</option>
-                                                </select>
-                                            </div>
+                                            <label class="form-label">Website</label>
+                                            <input type="text" class="form-control" value="" name="website" placeholder="https://mywebsite/">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Gender</label>
-                                            <div>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" id="inlineRadio1" name="gender" value="male"
-                                                           class="form-check-input">
-                                                    <label class="form-check-label" for="inlineRadio1">Male</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" id="inlineRadio2" name="gender" value="female"
-                                                           class="form-check-input">
-                                                    <label class="form-check-label"
-                                                           for="inlineRadio2">Female</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" id="inlineRadio3" name="gender" value="other"
-                                                           class="form-check-input">
-                                                    <label class="form-check-label" for="inlineRadio3">Other</label>
-                                                </div>
-                                            </div>
+                                            <label class="form-label">Languages</label>
+                                            <input type="text" class="form-control" value="" name="language" placeholder="english">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Address Line 1 <span style="color: red">*</span></label>
+                                            <input type="text" class="form-control form-control @error('address1') is-invalid @enderror" value="" name="address1" placeholder="Jakarta Street no 194">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Address Line 2</label>
+                                            <input type="text" class="form-control" value="" name="address2" placeholder="Jakarta Street no 0934">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Role</label>
-                                            <select class="form-select">
-                                                <option value="" selected>All</option>
-                                                <option value="1">Superadmin</option>
-                                                <option value="2">Admin</option>
-                                                <option value="3">Manager</option>
-                                                <option value="4" >Supervisor</option>
-                                                <option value="5" >User</option>
-                                                <option value="6" >Visitor</option>
-                                                <option value="7" >Buyer</option>
-                                                <option value="8" >Customer</option>
-                                            </select>
+                                            <label class="form-label">Post Code</label>
+                                            <input type="text" class="form-control" value="" name="post_code" placeholder="101013">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Status</label>
-                                            <select class="form-select">
-                                                <option value="" selected>All</option>
-                                                <option value="1" >Active</option>
-                                                <option value="2">Inactive</option>
-                                            </select>
+                                            <label class="form-label">City</label>
+                                            <input type="text" class="form-control" value="" name="city" placeholder="Jakarta">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Department</label>
-                                            <select class="form-select">
-                                                <option value="" selected>All</option>
-                                                <option value="">Sales</option>
-                                                <option value="" >Development</option>
-                                                <option value="">Management</option>
-                                            </select>
+                                            <label class="form-label">State</label>
+                                            <input type="text" class="form-control" value="" name="state" placeholder="jakarta pusat">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Country</label>
+                                            <input type="text" class="form-control" value="" name="country" placeholder="indonesia">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h6 class="card-title mb-4">Contact</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Phone</label>
-                                        <input type="text" class="form-control" value="">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title mb-4">Social</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Twitter / X</label>
+                                                <input type="text" class="form-control"
+                                                    value="" name="social_x" placeholder="https://twitter.com/">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Facebook</label>
+                                                <input type="text" class="form-control"
+                                                    value="" name="social_fb" placeholder="https://web.facebook.com/">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Instagram</label>
+                                                <input type="text" class="form-control"
+                                                    value="" name="social_ig" placeholder="https://www.instagram.com/">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">GitHub</label>
+                                                <input type="text" class="form-control"
+                                                    value="" name="social_github" placeholder="https://github.com/">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Website</label>
-                                        <input type="text" class="form-control" value="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Languages</label>
-                                        <input type="text" class="form-control" value="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Address Line 1</label>
-                                        <input type="text" class="form-control" value="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Address Line 2</label>
-                                        <input type="text" class="form-control" value="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Post Code</label>
-                                        <input type="text" class="form-control" value="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">City</label>
-                                        <input type="text" class="form-control" value="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">State</label>
-                                        <input type="text" class="form-control" value="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Country</label>
-                                        <input type="text" class="form-control" value="">
-                                    </div>
-                                </div>
                             </div>
                         </div>
+                        <button type="submit">Submit</button>
+                    </form>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h6 class="card-title mb-4">Social</h6>
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Twitter / X</label>
-                                            <input type="text" class="form-control"
-                                                   value="">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Facebook</label>
-                                            <input type="text" class="form-control"
-                                                   value="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Instagram</label>
-                                            <input type="text" class="form-control"
-                                                   value="">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">GitHub</label>
-                                            <input type="text" class="form-control"
-                                                   value="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                     <div class="card">
                         <div class="card-body">
@@ -432,4 +478,27 @@
             </div>
         </div>
     </div>
+
+
+    
+    <script>
+        document.getElementById('avatar-input').addEventListener('change', function(e) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        var img = document.getElementById('avatar-preview');
+        img.src = e.target.result;
+        img.style.transform = 'scaleX(-1)'; // Flip the image horizontally
+    };
+    reader.readAsDataURL(this.files[0]);
+});
+
+document.getElementById('remove-avatar').addEventListener('click', function() {
+    var img = document.getElementById('avatar-preview');
+    img.src = "{{ asset('path_to_default_avatar_image') }}"; // Reset image to default
+    img.style.transform = 'none'; // Reset transformation
+    document.getElementById('avatar-input').value = null; // Clear file input value
+});
+
+    </script>
+
 </div>

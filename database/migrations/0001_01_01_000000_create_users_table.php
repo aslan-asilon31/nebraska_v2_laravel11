@@ -36,6 +36,15 @@ return new class extends Migration
             $table->string('wishlist')->nullable();
             $table->string('desc')->nullable();
             $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('post_code')->nullable();
+            $table->string('social_x')->nullable();
+            $table->string('social_fb')->nullable();
+            $table->string('social_ig')->nullable();
+            $table->string('social_github')->nullable();
+            $table->string('website')->nullable();
+            $table->string('language')->nullable();
             $table->string('created_by')->default();
             $table->string('updated_by')->nullable();
             $table->rememberToken();

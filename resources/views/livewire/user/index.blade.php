@@ -1,4 +1,5 @@
 <div>
+  @include('sweetalert::alert')
             
     <div class="card">
         <div class="card-body">
@@ -79,8 +80,14 @@
                         <td>
                             <a href="#">
                                 <figure class="avatar me-3">
-                                    <img src="../images/user/man_avatar3.jpg"
-                                        class="rounded-circle" alt="avatar">
+                                    <?php
+                                        $newImage = str_replace("public/users", "", $user->image);
+                                    ?>
+                                    @if ($user->image)
+                                        <img src="{{ asset('storage/users'.$newImage) }}" alt="user image" width="150">
+                                    @else
+                                        <img src="{{ asset('avatar-3d/anonymous.png') }}" alt="user image" width="150">
+                                    @endif
                                 </figure>
                             </a>
                         </td>
@@ -102,25 +109,21 @@
                                 </td>
                             @elseif ($user->role == 4)
                                 <td>
-                                    <span class="badge bg-danger">Superadmin</span>
+                                    <span class="badge bg-danger">Supervisor</span>
                                 </td>
                             @elseif ($user->role == 5)
                                 <td>
-                                    <span class="badge bg-danger">Supervisor</span>
+                                    <span class="badge bg-danger">User</span>
                                 </td>
                             @elseif ($user->role == 6)
                                 <td>
-                                    <span class="badge bg-danger">User</span>
+                                    <span class="badge bg-danger">Visitor</span>
                                 </td>
                             @elseif ($user->role == 7)
                                 <td>
-                                    <span class="badge bg-danger">Visitor</span>
-                                </td>
-                            @elseif ($user->role == 8)
-                                <td>
                                     <span class="badge bg-danger">Buyer</span>
                                 </td>
-                            @elseif ($user->role == 9)
+                            @elseif ($user->role == 8)
                                 <td>
                                     <span class="badge bg-danger">Customer</span>
                                 </td>
@@ -132,7 +135,7 @@
 
 
                         @if ($user->status_id == 1)
-                            <td class="" style="font-weight:bolder;text-align:center;background-color:blueviolet;color:white;">Active</td>
+                            <td class="" > <span style="font-weight:bolder;text-align:center;background-color:blueviolet;color:white;border-radius:5px;">Active</span> </td>
                             @elseif ($user->status_id == 2)
                                 <td class="" style="font-weight:bolder;text-align:center;background-color:black;color:white;">Inactive</td>
                             @else
@@ -148,7 +151,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a href="#" class="dropdown-item">View Profile</a>
-                                    <a href="#" class="dropdown-item">Edit</a>
+                                    <a href="{{ route('user.edit', $user->id) }}" class="dropdown-item">Edit</a>
                                     <a href="#" class="dropdown-item text-danger">Delete</a>
                                 </div>
                             </div>
@@ -161,6 +164,8 @@
             
             </tbody>
         </table>
+
+        {{ $users->links() }}
     </div>
 
     <nav class="mt-4" aria-label="Page navigation example">

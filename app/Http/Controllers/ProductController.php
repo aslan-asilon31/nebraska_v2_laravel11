@@ -9,7 +9,6 @@ use Alert;
 class ProductController extends Controller
 {
     public function cart()
-
     {
 
         return view('cart');
@@ -136,8 +135,8 @@ class ProductController extends Controller
 
     public function remove(Request $request)
     {
-        $request->id = 0;
         // dd($request->id);
+        // $request->id = 0;
         if ($request->id) {
             $cart = session()->get('cart');
 

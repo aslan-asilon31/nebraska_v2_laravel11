@@ -42,7 +42,7 @@ Route::get('product-checkout', App\Livewire\Product\Checkout::class)->name('prod
 // Route::get('cart', [ProductController::class, 'cart'])->name('cart');
 
 Route::get('cart', App\Livewire\Product\Cart::class)->name('cart');
-Route::get('add-to-cart/{product_id}', App\Livewire\Product\CartAdd::class)->name('add.to.cart');
+Route::get('add-to-cart/{id}', App\Livewire\Product\CartAdd::class)->name('add.to.cart');
 
 // Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
 
@@ -72,8 +72,9 @@ Route::get('profile', App\Livewire\Profile\Index::class)->name('profile.index');
 Route::get('user', App\Livewire\User\Index::class)->name('user.index')->middleware('auth');    
 Route::get('user-grid', App\Livewire\User\Grid::class)->name('user.grid')->middleware('auth'); 
 Route::get('user-create', App\Livewire\User\Create::class)->name('user.create')->middleware('auth');   
-Route::get('user-add/{id}', App\Livewire\User\Add::class)->name('user.add')->middleware('auth');   
-// Route::livewire('/user-edit/{id}', 'user.edit')->name('user.edit');
+Route::post('user-add', App\Livewire\User\Add::class)->name('user.add')->middleware('auth');   
+Route::get('user-edit/{id}', App\Livewire\User\Edit::class)->name('user.edit')->middleware('auth');
+Route::put('user-update/{id}', App\Livewire\User\Update::class)->name('user.update')->middleware('auth');
 
 Route::get('auth-login', App\Livewire\Authentication\Login::class)->name('authentication.login');
 Route::get('auth-register', App\Livewire\Authentication\Register::class)->name('authentication.register');
