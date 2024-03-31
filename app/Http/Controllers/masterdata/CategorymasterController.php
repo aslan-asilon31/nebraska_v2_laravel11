@@ -5,6 +5,7 @@ namespace App\Http\Controllers\masterdata;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MasterData\CategoryMaster;
+use App\Models\MasterData\StatusMaster;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Alert;
@@ -18,11 +19,12 @@ class CategorymasterController extends Controller
         $slugs = 'Dashboard > Category' ;
 
         $categories = CategoryMaster::latest()->paginate(5);
+        $statuses = StatusMaster::all();
         $username = Auth::user()->name;
         $userrole = Auth::user()->role;
 
         //return view with data
-        return view('masterdata.categorymaster', compact('isActive','username','userrole','slugs','categories'))
+        return view('masterdata.categorymaster', compact('statuses','isActive','username','userrole','slugs','categories'))
             ->layout('components.layouts.app_backend', ['isActive' => $isActive,'categories' => $categories,'username' => $username, 'userrole' => $userrole]);
     }
 
@@ -47,33 +49,37 @@ class CategorymasterController extends Controller
 
     public function store(Request $request)
     {
-        // dd('cek'. $request);
-
         //define validation rules
         $validator = Validator::make($request->all(), [
-            'title'     => 'required',
-            'content'   => 'required',
+            'name'     => 'required',
+            'status'   => 'required',
         ]);
-
-
+    
         //check if validation fails
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-
-        //create post
-        $post = Post::create([
-            'title'     => $request->title, 
-            'content'   => $request->content
-        ]);
-
+    
+        // Upload image
+        $imagePath = $request->image->storeAs('public/categories', $request->image->hashName());
+    
+        if($imagePath){
+            //create category
+            $categorymaster = CategoryMaster::create([
+                'image'     => $imagePath, 
+                'name'     => $request->name, 
+                'status_id'   => $request->status
+            ]);
+        }
+    
         //return response
         return response()->json([
             'success' => true,
-            'message' => 'Data Berhasil Disimpan!',
-            'data'    => $post  
+            'message' => 'Data Successfully Saved!',
+            'data'    => $categorymaster  
         ]);
     }
+    
 
     public function show(Post $post)
     {

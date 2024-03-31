@@ -16,7 +16,7 @@ class RolemasterController extends Controller
         $isActive = 'role' ;
         $slugs = 'Master Data > region' ;
 
-        $roles = RegionMaster::latest()->paginate(5);
+        $roles = RoleMaster::latest()->paginate(5);
         $username = Auth::user()->name;
         $userrole = Auth::user()->role;
 

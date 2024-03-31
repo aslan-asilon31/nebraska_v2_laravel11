@@ -14,16 +14,16 @@ class BrandmasterController extends Controller
 {
     public function index()
     {
-        $isActive = 'bank' ;
-        $slugs = 'Master Data > Bank' ;
+        $isActive = 'Brand' ;
+        $slugs = 'Master Data > Brand' ;
 
 
-        $banks = BankMaster::latest()->paginate(5);
+        $brands = BrandMaster::latest()->paginate(5);
         $username = Auth::user()->name;
         $userrole = Auth::user()->role;
 
         //return view with data
-        return view('masterdata.bankmaster', compact('isActive','username','userrole','slugs','banks'))
-            ->layout('components.layouts.app_backend', ['isActive' => $isActive,'banks' => $banks,'username' => $username, 'userrole' => $userrole]);
+        return view('masterdata.brandmaster', compact('isActive','username','userrole','slugs','brands'))
+            ->layout('components.layouts.app_backend', ['isActive' => $isActive,'brands' => $brands,'username' => $username, 'userrole' => $userrole]);
     }
 }

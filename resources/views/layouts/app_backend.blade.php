@@ -672,34 +672,34 @@
                     </a>
                     <ul>
                         <li>
-                            <a class="{{ $isActive == 'bank'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Bank Master</a>
+                            <a class="{{ $isActive == 'bank'  ? 'active' : ''}}"  href="{{route('bank.index')}}" >Bank Master</a>
                         </li>
                         <li>
-                            <a class="{{ $isActive == 'brand'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Brand Master</a>
+                            <a class="{{ $isActive == 'brand'  ? 'active' : ''}}"  href="{{route('brand.index')}}" >Brand Master</a>
                         </li>
                         <li>
                             <a class="{{ $isActive == 'category'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Category Master</a>
                         </li>
                         <li>
-                            <a class="{{ $isActive == 'department'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Department Master</a>
+                            <a class="{{ $isActive == 'department'  ? 'active' : ''}}"  href="{{route('department.index')}}" >Department Master</a>
                         </li>
                         <li>
-                            <a class="{{ $isActive == 'image'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Image Master</a>
+                            <a class="{{ $isActive == 'image'  ? 'active' : ''}}"  href="{{route('image.index')}}" >Image Master</a>
                         </li>
                         <li>
-                            <a class="{{ $isActive == 'price'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Price Master</a>
+                            <a class="{{ $isActive == 'price'  ? 'active' : ''}}"  href="{{route('price.index')}}" >Price Master</a>
                         </li>
                         <li>
-                            <a class="{{ $isActive == 'region'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Region Master</a>
+                            <a class="{{ $isActive == 'region'  ? 'active' : ''}}"  href="{{route('region.index')}}" >Region Master</a>
                         </li>
                         <li>
-                            <a class="{{ $isActive == 'role'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Role Master</a>
+                            <a class="{{ $isActive == 'role'  ? 'active' : ''}}"  href="{{route('role.index')}}" >Role Master</a>
                         </li>
                         <li>
-                            <a class="{{ $isActive == 'section'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Section Master</a>
+                            <a class="{{ $isActive == 'section'  ? 'active' : ''}}"  href="/section" >Section Master</a>
                         </li>
                         <li>
-                            <a class="{{ $isActive == 'status'  ? 'active' : ''}}"  href="{{route('category.index')}}" >Status Master</a>
+                            <a class="{{ $isActive == 'status'  ? 'active' : ''}}"  href="{{route('status.index')}}" >Status Master</a>
                         </li>
                         <li>
                             <a href="{{route('errorpage.underconstruction')}}" >Detail</a>

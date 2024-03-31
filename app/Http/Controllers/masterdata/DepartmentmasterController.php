@@ -16,7 +16,6 @@ class DepartmentmasterController extends Controller
         $isActive = 'department' ;
         $slugs = 'Master Data > Department' ;
 
-
         $departments = DepartmentMaster::latest()->paginate(5);
         $username = Auth::user()->name;
         $userrole = Auth::user()->role;

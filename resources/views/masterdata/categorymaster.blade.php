@@ -61,11 +61,11 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-custom table-lg mb-0" id="customers">
+        <table class="table table-custom table-lg mb-0" id="categories">
             <thead>
             <tr>
                 <th>
-                    <input class="form-check-input select-all" type="checkbox" data-select-all-target="#customers" id="defaultCheck1">
+                    <input class="form-check-input select-all" type="checkbox" data-select-all-target="#categories" id="defaultCheck1">
                 </th>
                 <th>ID</th>
                 <th>Image</th>
@@ -146,6 +146,6 @@
     </nav>
 </div>  
 
-@include('components.modal-create-master')
+@include('components.modal-create-category')
 @endsection
 

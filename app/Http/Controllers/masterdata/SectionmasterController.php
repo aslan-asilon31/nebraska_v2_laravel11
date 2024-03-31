@@ -13,7 +13,7 @@ class SectionmasterController extends Controller
 {
     public function index()
     {
-        $isActive = 'Section' ;
+        $isActive = 'section' ;
         $slugs = 'Master Data > Section' ;
 
 
@@ -22,7 +22,7 @@ class SectionmasterController extends Controller
         $userrole = Auth::user()->role;
 
         //return view with data
-        return view('masterdata.departmentmaster', compact('isActive','username','userrole','slugs','sections'))
+        return view('masterdata.sectionmaster', compact('isActive','username','userrole','slugs','sections'))
             ->layout('components.layouts.app_backend', ['isActive' => $isActive,'sections' => $sections,'username' => $username, 'userrole' => $userrole]);
     }
 }
