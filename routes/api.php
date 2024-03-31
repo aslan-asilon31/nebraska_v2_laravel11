@@ -12,3 +12,8 @@ Route::get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function () {
     Route::get('product-api', [ProductController::class, 'index']);
 });
+
+/**
+ * route resource posts
+ */
+Route::apiResource('/posts', App\Http\Controllers\Api\PostController::class);
