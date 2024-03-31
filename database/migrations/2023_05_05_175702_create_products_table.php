@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('price_master_id')->nullable();
             $table->integer('image_master_id')->nullable();
             $table->string('image_banner')->nullable();
+            $table->string('cat_sub_from')->nullable();
             $table->string('name')->nullable();
             $table->string('barcode')->nullable();
             $table->integer('is_sold')->nullable();

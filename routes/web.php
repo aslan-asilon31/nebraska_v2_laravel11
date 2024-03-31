@@ -3,7 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Welcome\Index;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\masterdata\BankmasterController;
+use App\Http\Controllers\masterdata\BrandmasterController;
+use App\Http\Controllers\masterdata\CategorymasterController;
+use App\Http\Controllers\masterdata\DepartmentmasterController;
+use App\Http\Controllers\masterdata\ImagemasterController;
+use App\Http\Controllers\masterdata\PricemasterController;
+use App\Http\Controllers\masterdata\RegionmasterController;
+use App\Http\Controllers\masterdata\RolemasterController;
+use App\Http\Controllers\masterdata\SectionmasterController;
+use App\Http\Controllers\masterdata\StatusmasterController;
  
 Route::get('/', Index::class);
 
@@ -27,7 +36,6 @@ Route::get('welcome-category-detail', App\Livewire\Welcome\ProductCategoryDetail
 
 Route::get('dashboard', App\Livewire\Dashboard\Index::class)->name('dashboard.index')->middleware('auth');
 
-Route::get('category', App\Livewire\Category\Index::class)->name('category.index');
 
 Route::get('order', App\Livewire\Order\Index::class)->name('order.index');
 Route::get('order-detail', App\Livewire\Order\Detail::class)->name('order.detail');
@@ -89,3 +97,6 @@ Route::get('error-under-construction', App\Livewire\ErrorPages\UnderConstruction
 
 
 
+Route::resource('/posts', App\Http\Controllers\PostController::class);
+
+// Route::get('category', App\Livewire\Category\Index::class)->name('category.index');
