@@ -1,5 +1,5 @@
-$(function () {
 
+$(function () {
     // Dashboard chart colors
     const body_styles = window.getComputedStyle(document.body);
     const colors = {
@@ -195,7 +195,8 @@ $(function () {
 
     
     function salesChart() {
-        // alert(category.category_master_id); // Access and alert specific property
+
+
 
         if ($('#sales-chart').length) {
             const options = {

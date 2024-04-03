@@ -532,7 +532,7 @@
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown">
                 <div class="avatar me-3">
-                    <img src="{{ asset('backend/cakeadmin/images/user/man_avatar5.jpg')}}"
+                    <img src="{{ asset('backend/cakeadmin/images/user/zWZLXoSX.jpg')}}"
                          class="rounded-circle" alt="image">
                 </div>
                 <div>
@@ -1007,8 +1007,8 @@
 
 </script>
 
-<!-- Examples -->
-<script src="{{ asset('backend/cakeadmin/js/examples/dashboard.js')}}"></script>
+{{-- <!-- Examples -->
+<script src="{{ asset('backend/cakeadmin/js/examples/dashboard.js')}}"></script> --}}
 
 <!-- Main Javascript file -->
 <script src="{{ asset('backend/cakeadmin/js/app.js')}}"></script>

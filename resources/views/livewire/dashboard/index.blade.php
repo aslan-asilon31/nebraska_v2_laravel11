@@ -2,79 +2,51 @@
   @include('sweetalert::alert')
 
   @if($userrole == 1)
+  <div class="">
+      <select class="form-select">
+          <optgroup label="2023">
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+          </optgroup>
+          <optgroup label="2024">
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March" >March</option>
+              <option value="April" selected>April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+          </optgroup>
+      </select>
+  </div>
   <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col-lg-7 col-md-12">
+    <div class="col-lg-6 col-md-12">
         <div class="card widget h-100">
-            <div class="card-header d-flex">
-                <h6 class="card-title">
-                    Sales Chart
-                    <a href="#" class="bi bi-question-circle ms-1 small" data-bs-toggle="tooltip"
-                       title="Daily orders and sales"></a>
-                </h6>
-                <div class="d-flex gap-3 align-items-center ms-auto">
-                    <div class="dropdown">
-                        <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true"
-                           aria-expanded="false">
-                            <i class="bi bi-three-dots"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <a href="#" class="dropdown-item">View Detail</a>
-                            <a href="#" class="dropdown-item">Download</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="d-md-flex align-items-center mb-3">
-                    <div class="d-flex align-items-center">
-                        <div class="display-7 me-3" style="font-weight:bolder;">
-                            <i class="bi bi-bag-check me-2 text-success"></i> Rp 
-                            <?php $totalPrice = 0; ?>
-                            @foreach ($orders as $order)
-                                <?php $totalPrice += $order['total_price']; ?>
-                            @endforeach
-                            {{ number_format($totalPrice, 2, '.', ',') }}
-                        </div>
-                        <span class="text-success">
-                            <i class="bi bi-arrow-up me-1 small"></i>8.30%
-                        </span>
-                    </div>
-                    <div class="d-flex gap-4 align-items-center ms-auto mt-3 mt-lg-0">
-                        <select class="form-select">
-                            <optgroup label="2023">
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                            </optgroup>
-                            <optgroup label="2024">
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March" selected>March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                </div>
-                <div id="sales-chart"></div>
-                <div class="d-flex justify-content-center gap-4 align-items-center ms-auto mt-3 mt-lg-0">
-                    <div>
-                        <i class="bi bi-circle-fill mr-2 text-primary me-1 small"></i>
-                        <span>Sales</span>
-                    </div>
-                    <div>
-                        <i class="bi bi-circle-fill mr-2 text-success me-1 small"></i>
-                        <span>Order</span>
-                    </div>
-                </div>
-            </div>
+            @include('livewire/dashboard/order-chart')
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12">
+        <div class="card widget h-100">
+            @include('livewire/dashboard/transaction-chart')
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12">
+        <div class="card widget h-100">
+            <div id="container-order"></div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12">
+        <div class="card widget h-100">
+            <div id="container"></div>
+
         </div>
     </div>
     <div class="col-lg-5 col-md-12">
@@ -175,36 +147,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-12">
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="d-flex mb-3">
-                    <div class="display-7">
-                        <i class="bi bi-credit-card-2-front"></i>
-                    </div>
-                    <div class="dropdown ms-auto">
-                        <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true"
-                           aria-expanded="false">
-                            <i class="bi bi-three-dots"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <a href="#" class="dropdown-item">View Detail</a>
-                            <a href="#" class="dropdown-item">Download</a>
-                        </div>
-                    </div>
-                </div>
-                <h4 class="mb-3">Sales</h4>
-                <div class="d-flex mb-3">
-                    <div class="display-7">$3.759,00</div>
-                    <div class="ms-auto" id="total-sales"></div>
-                </div>
-                <div class="text-danger">
-                    Over last month 2.4% <i class="small bi bi-arrow-down"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-12">
+
+    <div class="col-lg-6 col-md-12">
         <div class="card h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-4">
@@ -306,6 +250,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-lg-4 col-md-12">
         <div class="card h-100">
             <div class="card-body">
@@ -819,6 +764,25 @@
   </div>
   @else
   @endif
+
+  
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+
+
+     <!-- Examples -->
+  <script src="{{ asset('backend/cakeadmin/js/examples/dashboard.js')}}"></script>
+
+
+
+  <script>
+        var chartConfig = <?php echo json_encode($chartConfigUser) ?>;
+        var chartConfigOrder = <?php echo json_encode($chartConfigOrder) ?>;
+
+        Highcharts.chart('container', chartConfig);
+        Highcharts.chart('container-order', chartConfigOrder);
+  </script>
+
 
 
 
