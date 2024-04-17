@@ -1,3 +1,7 @@
+figma design :
+![nebraska-figma-design](https://github.com/aslan-asilon31/nebraska_v2_laravel11/assets/116990574/5c193643-44e5-4c28-bf39-7ba087822538)
+
+<br>
 new update on branch development :
 <br>
 [Visit my Nebraska static use ( HTML , css js )](https://www.nebraskav2.sulaslansetiawan.cfd)
